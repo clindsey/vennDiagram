@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>clindsey/vennDiagram</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1><small>clindsey/</small>vennDiagram</h1>
+      <div class="row">
+        <h2 class="row__header">data.json</h2>
+        <div class="column column__left">
+          <div id="diagram0"></div>
+        </div>
+        <div class="column column__right">
+          <table id="legend0"></table>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="venn.js"></script>
+    <script>
+      (function () {
+        'use strict';
+
+        $(function () {
+          $.ajax('data.json').success(function (data) {
+            createVenn('#diagram0', '#legend0', data);
+          });
+        });
+
+        var createVenn = function (diagramSelector, legendSelector, data) {
+          var dataA = data[0] // deliberately hardcoded support for only 2 sets
+            , dataB = data[1]
+            , overlapSet = findOverlap(dataA.members, dataB.members)
+            , $vennDiagramEl
+            , $diagramLegendEl
+            ;
+          $vennDiagramEl = $(diagramSelector).vennDiagram({
+            dataA: dataA
+          , dataB: dataB
+          , overlapSet: overlapSet
+          });
+          $diagramLegendEl = $(legendSelector).diagramLegend({
+            dataA: dataA
+          , dataB: dataB
+          , overlapSet: overlapSet
+          });
+          $vennDiagramEl.vennDiagram('linkLegend', $diagramLegendEl);
+        };
+
+        var findOverlap = function (setA, setB) { // O(setA.length * setB.length)
+          var overlapSet = []
+            ;
+          for(var i = 0; i < setA.length; i++) {
+            var index = setB.indexOf(setA[i])
+              ;
+            if(index > -1) {
+              overlapSet.push(setA[i]);
+            }
+          }
+          return overlapSet;
+        };
+      })();
+    </script>
+  </body>
+</html>

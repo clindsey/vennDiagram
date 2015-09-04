@@ -1,0 +1,164 @@
+/* begin pageStyles */
+html,
+body {
+  font-family: helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h1 small {
+  color: #9e9e9e;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.row {
+  margin-bottom: 60px;
+}
+
+.row__header {
+  text-align: center;
+  border-top: solid 1px #dedede;
+  padding-top: 20px;
+}
+
+.row:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.column {
+  float: left;
+}
+
+.column__left {
+  width: 600px;
+}
+/* end pageStyles */
+
+/* begin legendStyles */
+.dataset-legend table {
+  border-collapse: collapse;
+}
+
+.dataset-legend td {
+  border: solid 1px black;
+  padding: 4px 6px;
+}
+
+.dataset-legend td:first-child {
+  padding: 2px;
+  background-color: white;
+}
+
+.dataset-legend--color {
+  width: 18px;
+  height: 23px;
+}
+
+.set__row--selected {
+  background-color: #ff878f;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
+}
+/* end legendStyles */
+
+/* begin diagramStyles */
+.diagram-container {
+  width: 400px;
+  height: 200px;
+  margin: auto;
+  position: relative;
+}
+
+.circle,
+.circle__outline,
+.overlap,
+.overlap__inner {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 50%;
+  top: 50%;
+}
+
+.circle {
+  background-color: #888;
+  z-index: 10;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.circle,
+.overlap__inner {
+  cursor: pointer;
+}
+
+.circle__outline {
+  z-index: 200;
+  pointer-events: none;
+}
+
+.circle--set-a,
+.dataset-legend--color__0 {
+  background-color: #80e4e4;
+}
+
+.circle--set-b,
+.dataset-legend--color__1 {
+  background-color: #e4e480;
+}
+
+.overlap__inner,
+.dataset-legend--color__2 {
+  background-color: #a5d773;
+}
+
+.dataset-legend--color__3,
+.set--selected {
+  background-color: #ff878f;
+}
+
+.circle--set-a,
+.circle__outline--set-a {
+  left: 25%;
+}
+
+.circle--set-b,
+.circle__outline--set-b {
+  left: 75%;
+}
+
+.overlap,
+.overlap__inner {
+  z-index: 100;
+}
+
+.overlap {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.overlap__inner {
+  pointer-events: auto;
+}
+
+/*
+.circle:hover,
+.overlap__inner:hover,
+.circle--set-a:hover ~ .overlap .overlap__inner,
+.circle--set-b:hover ~ .overlap .overlap__inner {
+  background-color: #ffbbc0;
+}
+*/
+
+.circle__outline,
+.circle:hover,
+.overlap__inner:hover {
+  border: solid 2px #fff;
+}
+/* end diagramStyles */
